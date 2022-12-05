@@ -7,10 +7,12 @@ class OpponentMoves(Enum):
     PAPER = "B"
     SCISSORS = "C"
 
+
 class PlayerMoves(Enum):
     ROCK = "X"
     PAPER = "Y"
     SCISSORS = "Z"
+
 
 play_result = {
     PlayerMoves.ROCK.value: {
@@ -26,8 +28,8 @@ play_result = {
     PlayerMoves.SCISSORS.value: {
         OpponentMoves.ROCK.value: 0,
         OpponentMoves.PAPER.value: 6,
-        OpponentMoves.SCISSORS.value: 3,   
-    }       
+        OpponentMoves.SCISSORS.value: 3,
+    }
 }
 
 move_result = {
@@ -54,6 +56,7 @@ def compute_score_part1(lines: List[str]) -> int:
         score += get_round_result_for_player(round[2], round[0])
     return score
 
+
 def get_player_move(opponent_move: str, expected_result) -> str:
     for move, results in play_result.items():
         if results[opponent_move] == expected_result:
@@ -63,10 +66,11 @@ def get_player_move(opponent_move: str, expected_result) -> str:
 def compute_score_part2(lines: List[str]) -> int:
     score = 0
     for game_round in lines:
-        score += get_round_result_for_player(get_player_move(game_round[0], expected_results[game_round[2]]), game_round[0])
+        score += get_round_result_for_player(get_player_move(
+            game_round[0], expected_results[game_round[2]]), game_round[0])
     return score
 
 
 def main(lines: List[str]):
     print(f"Part 1: {compute_score_part1(lines)}")
-    print(f"Part 1: {compute_score_part2(lines)}")
+    print(f"Part 2: {compute_score_part2(lines)}")
