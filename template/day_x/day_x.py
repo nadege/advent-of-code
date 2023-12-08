@@ -1,6 +1,3 @@
-from typing import list
-
-
 def compute_part1(lines: list[str]) -> int:
     score = 0
     return score
